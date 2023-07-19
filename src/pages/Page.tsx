@@ -1,4 +1,19 @@
-import { IonButtons, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonMenuButton, IonPage, IonTitle, IonToolbar } from "@ionic/react"
+import {
+    IonButtons,
+    IonCol,
+    IonContent,
+    IonFab,
+    IonFabButton,
+    IonGrid,
+    IonHeader,
+    IonIcon,
+    IonImg,
+    IonMenuButton,
+    IonPage,
+    IonRow,
+    IonTitle,
+    IonToolbar,
+} from "@ionic/react"
 import { useParams } from "react-router"
 import "./Page.css"
 import { camera } from "ionicons/icons"
@@ -7,7 +22,7 @@ import { usePhotoGallery } from "../hooks/usePhotoGallery"
 const Page: React.FC = () => {
     const { name } = useParams<{ name: string }>()
 
-    const { takePhoto } = usePhotoGallery()
+    const { photos, takePhoto } = usePhotoGallery()
     function handlePress() {
         alert("pressed")
         takePhoto()
@@ -29,6 +44,15 @@ const Page: React.FC = () => {
                         <IonIcon icon={camera}></IonIcon>
                     </IonFabButton>
                 </IonFab>
+                <IonGrid>
+                    <IonRow>
+                        {photos.map((photo, index) => (
+                            <IonCol size="6" key={photo.filepath}>
+                                <IonImg src={photo.webviewPath} />
+                            </IonCol>
+                        ))}
+                    </IonRow>
+                </IonGrid>
             </IonContent>
         </IonPage>
     )
