@@ -31,8 +31,14 @@ import { Capacitor } from "@capacitor/core"
 const PHOTO_STORAGE = "photos"
 export function usePhotoGallery() {
     const [photos, setPhotos] = useState<UserPhoto[]>([])
-
+    const [permission, setPermission] = useState("no set")
     useEffect(() => {
+        Camera.checkPermissions().then((e) => {
+            console.log({ e })
+            alert(e.camera)
+            setPermission(e.camera)
+        })
+
         const loadSaved = async () => {
             const { value } = await Preferences.get({ key: PHOTO_STORAGE })
 
