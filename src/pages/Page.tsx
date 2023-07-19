@@ -8,7 +8,10 @@ const Page: React.FC = () => {
     const { name } = useParams<{ name: string }>()
 
     const { takePhoto } = usePhotoGallery()
-
+    function handlePress() {
+        alert("pressed")
+        takePhoto()
+    }
     return (
         <IonPage>
             <IonHeader>
@@ -22,7 +25,7 @@ const Page: React.FC = () => {
 
             <IonContent>
                 <IonFab vertical="bottom" horizontal="center" slot="fixed">
-                    <IonFabButton onClick={() => takePhoto()}>
+                    <IonFabButton onClick={handlePress}>
                         <IonIcon icon={camera}></IonIcon>
                     </IonFabButton>
                 </IonFab>
