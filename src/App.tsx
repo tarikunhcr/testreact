@@ -25,6 +25,10 @@ import "./theme/variables.css"
 
 setupIonicReact()
 
+async function check() {
+    Portals.
+}
+
 const App: React.FC = () => {
     return (
         <IonApp>
